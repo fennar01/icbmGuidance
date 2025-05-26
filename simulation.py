@@ -7,6 +7,7 @@ All sensitive or dangerous details are omitted or replaced with safe placeholder
 
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D  # Add at the top with other imports
 
 # --- Simulated Sensor Suite ---
 class SensorSuite:
@@ -66,14 +67,27 @@ class ActuatorSuite:
 
 # --- Trajectory Visualizer ---
 class TrajectoryVisualizer:
-    """Plots a simulated, non-representative trajectory."""
+    """Plots simulated, non-representative trajectories."""
     def plot(self, trajectory):
         x = trajectory['x']
         y = trajectory['y']
         plt.plot(x, y)
-        plt.title('Simulated ICBM Trajectory (Non-Functional)')
+        plt.title('Simulated ICBM Trajectory (Non-Functional, 2D)')
         plt.xlabel('Distance (km)')
         plt.ylabel('Altitude (km)')
+        plt.show()
+
+    def plot_3d(self, trajectory):
+        x = trajectory['x']
+        y = trajectory.get('y2', [0]*len(x))  # Dummy y2 for lateral movement
+        z = trajectory.get('z', [0]*len(x))  # Dummy z for altitude
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.plot(x, y, z)
+        ax.set_title('Simulated ICBM Trajectory (Non-Functional, 3D)')
+        ax.set_xlabel('Downrange (km)')
+        ax.set_ylabel('Crossrange (km)')
+        ax.set_zlabel('Altitude (km)')
         plt.show()
 
 # --- Simulated Environmental Model ---
@@ -120,7 +134,7 @@ class Simulation:
         self.environment = EnvironmentalModel()
         self.faults = FaultInjector(sensor_fault, actuator_fault)
         self.visualizer = TrajectoryVisualizer()
-        self.trajectory = {'x': [], 'y': []}
+        self.trajectory = {'x': [], 'y': [], 'y2': [], 'z': []}
         self.target = np.array([100, 0, 0])  # Dummy target
 
     def run(self, steps=20):
@@ -140,8 +154,11 @@ class Simulation:
             state['position'] = state['position'] + np.random.normal(1, 0.2, 3) + env['wind']
             self.trajectory['x'].append(state['position'][0])
             self.trajectory['y'].append(state['position'][2])
+            self.trajectory['y2'].append(state['position'][1])  # Crossrange
+            self.trajectory['z'].append(state['position'][2])   # Altitude
             print(f"Step {step}: Simulated modular GNC cycle (no real actions)")
         self.visualizer.plot(self.trajectory)
+        self.visualizer.plot_3d(self.trajectory)
 
 # --- Scenario Selector ---
 class ScenarioSelector:
