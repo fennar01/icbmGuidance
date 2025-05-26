@@ -112,6 +112,11 @@ To further enhance the educational value of this simulation, the following visua
 
 These features will be added in future updates. Contributions and suggestions are welcome!
 
+### 3D Trajectory Visualization
+The simulation now includes a 3D trajectory plot, in addition to the 2D plot. The 3D plot visualizes the simulated missile path in downrange, crossrange, and altitude dimensions. This feature is for educational purposes only and does not represent real-world physics or guidance.
+
+Both 2D and 3D plots are generated at the end of each simulation run to help illustrate the modular structure and theoretical possibilities of missile guidance visualization.
+
 ---
 
 ## License
