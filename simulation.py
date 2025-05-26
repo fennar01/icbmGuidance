@@ -8,6 +8,7 @@ All sensitive or dangerous details are omitted or replaced with safe placeholder
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # Add at the top with other imports
+import matplotlib.patches as mpatches  # Add with other imports
 
 # --- Simulated Sensor Suite ---
 class SensorSuite:
@@ -75,6 +76,14 @@ class TrajectoryVisualizer:
         plt.title('Simulated ICBM Trajectory (Non-Functional, 2D)')
         plt.xlabel('Distance (km)')
         plt.ylabel('Altitude (km)')
+        # Add error ellipse at final position to illustrate uncertainty
+        if x and y:
+            # Simulated uncertainty (dummy, based on sensor noise std)
+            width = 2 * 0.1  # Example: 2x sensor noise std
+            height = 2 * 0.1
+            ellipse = mpatches.Ellipse((x[-1], y[-1]), width, height, edgecolor='red', facecolor='none', linestyle='--', label='Uncertainty Ellipse')
+            plt.gca().add_patch(ellipse)
+            plt.legend()
         plt.show()
 
     def plot_3d(self, trajectory):
