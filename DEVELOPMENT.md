@@ -29,4 +29,19 @@ This document describes the recommended development workflow for contributors. A
 
 ## Security & Ethics
 - This repository is for demonstration only.
-- No sensitive, dangerous, or export-controlled information is allowed. 
+- No sensitive, dangerous, or export-controlled information is allowed.
+
+## Running the Simulation
+To run the simulation locally:
+```bash
+pip install -r requirements.txt
+python simulation.py
+```
+This will execute the non-functional simulation and display a simple trajectory plot.
+
+## Repository
+Find the latest code and documentation at: https://github.com/fennar01/icbmGuidance
+
+## Safe Contribution Guidelines
+- Always check that your changes do not introduce any real-world operational logic.
+- If in doubt, open an issue or discussion before submitting a pull request. 

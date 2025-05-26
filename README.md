@@ -26,6 +26,32 @@ This repository simulates the theoretical architecture and logic of an ICBM guid
 ## Getting Started
 This project is for demonstration only. See the documentation for more details.
 
+## How it Works
+This simulation is organized into modular components representing the theoretical structure of a missile guidance system:
+- **Sensors**: Simulated data for position, velocity, and attitude.
+- **Navigation**: Dummy state estimation from sensor data.
+- **Guidance**: Placeholder logic for trajectory commands.
+- **Control**: Non-functional actuator command generation.
+- **Actuators**: No real hardware, just placeholders.
+- **Visualization**: Plots a simple, non-representative trajectory arc.
+
+All modules are heavily commented and non-operational.
+
+## Demo
+To run the simulation locally:
+```bash
+pip install -r requirements.txt
+python simulation.py
+```
+You will see console output for each simulated step and a simple trajectory plot.
+
+## Development Pipeline
+See `DEVELOPMENT.md` for full details. Key points:
+- Code style: PEP8
+- Linting: `flake8` or `pylint`
+- Testing: `pytest` (for safe, non-operational logic)
+- CI/CD: GitHub Actions recommended
+
 ---
 
 ## License
