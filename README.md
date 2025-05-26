@@ -117,6 +117,9 @@ The simulation now includes a 3D trajectory plot, in addition to the 2D plot. Th
 
 Both 2D and 3D plots are generated at the end of each simulation run to help illustrate the modular structure and theoretical possibilities of missile guidance visualization.
 
+### Error Ellipse Visualization
+The 2D trajectory plot now includes an error ellipse at the final position. This ellipse visually represents simulated uncertainty due to sensor noise, helping to illustrate how real guidance systems might visualize uncertainty in position or trajectory. The ellipse is for demonstration only and is not based on real data or operational algorithms.
+
 ---
 
 ## License
