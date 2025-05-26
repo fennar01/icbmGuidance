@@ -71,6 +71,24 @@ The following enhancements are planned to further increase the educational value
 
 Contributions are welcome! See `DEVELOPMENT.md` for safe contribution guidelines.
 
+## New Modules
+
+### EnvironmentalModel
+Simulates environmental effects such as wind and gravity variations. These effects are purely illustrative and do not represent real-world physics.
+
+### FaultInjector
+Allows toggling simulated sensor and actuator faults for demonstration purposes. Faults are non-harmful and only affect the dummy data used in the simulation.
+
+## Using Faults and Environmental Effects
+You can enable or disable sensor and actuator faults by passing arguments to the `Simulation` class in `simulation.py`:
+
+```python
+sim = Simulation(sensor_fault=True, actuator_fault=False)
+sim.run()
+```
+
+Environmental effects are always simulated as small random variations in wind and gravity, and are used in the dummy position update step.
+
 ---
 
 ## License
