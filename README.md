@@ -26,16 +26,26 @@ This repository simulates the theoretical architecture and logic of an ICBM guid
 ## Getting Started
 This project is for demonstration only. See the documentation for more details.
 
-## How it Works
-This simulation is organized into modular components representing the theoretical structure of a missile guidance system:
-- **Sensors**: Simulated data for position, velocity, and attitude.
-- **Navigation**: Dummy state estimation from sensor data.
-- **Guidance**: Placeholder logic for trajectory commands.
-- **Control**: Non-functional actuator command generation.
-- **Actuators**: No real hardware, just placeholders.
-- **Visualization**: Plots a simple, non-representative trajectory arc.
+## Modular Architecture
+This simulation is now organized into Python classes for each subsystem:
+- **SensorSuite**: Simulates IMU, GPS, and other sensors with noise.
+- **NavigationSystem**: Estimates current state from sensor data (dummy logic).
+- **GuidanceSystem**: Computes desired trajectory commands (dummy logic).
+- **ControlSystem**: Generates actuator commands (dummy logic).
+- **ActuatorSuite**: Simulates actuators (no real hardware).
+- **TrajectoryVisualizer**: Plots a simulated, non-representative trajectory.
+- **Simulation**: Orchestrates the modular simulation, running each subsystem in sequence.
 
-All modules are heavily commented and non-operational.
+Each class is heavily commented and non-operational, designed for educational demonstration only.
+
+## How the Modules Interact
+1. **SensorSuite** generates noisy sensor data.
+2. **NavigationSystem** estimates the missile's state from this data.
+3. **GuidanceSystem** computes dummy trajectory commands based on the state and a target.
+4. **ControlSystem** generates dummy actuator commands.
+5. **ActuatorSuite** receives these commands (no real effect).
+6. **Simulation** updates a dummy position and records the trajectory.
+7. **TrajectoryVisualizer** displays the simulated path.
 
 ## Demo
 To run the simulation locally:

@@ -44,4 +44,18 @@ Find the latest code and documentation at: https://github.com/fennar01/icbmGuida
 
 ## Safe Contribution Guidelines
 - Always check that your changes do not introduce any real-world operational logic.
-- If in doubt, open an issue or discussion before submitting a pull request. 
+- If in doubt, open an issue or discussion before submitting a pull request.
+
+## Extending the Simulation
+This project now uses a modular, class-based architecture. To add new features or subsystems:
+- Create a new class for your subsystem (e.g., FaultInjector, EnvironmentalModel).
+- Ensure all logic is non-functional and safe for public demonstration.
+- Add clear docstrings and comments explaining the educational purpose.
+- Update the Simulation orchestrator to include your new module if needed.
+
+## Example Extensions
+- Add simulated sensor failures or noise models.
+- Add a (non-functional) environmental effects module (e.g., wind, gravity variations).
+- Add more detailed trajectory visualizations (3D plots, error ellipses, etc.).
+
+All contributions must maintain the non-functional, educational intent of the project. 
