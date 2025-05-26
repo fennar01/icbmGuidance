@@ -85,60 +85,15 @@ Allows users to select between different demonstration scenarios:
 - `sensor_fault`: Simulated sensor faults only
 - `actuator_fault`: Simulated actuator faults only
 - `both_faults`: Both sensor and actuator faults
+- `high_wind`: Simulates strong wind conditions to illustrate environmental challenges.
+- `gravity_anomaly`: Simulates a gravity anomaly to show how unusual environmental effects might impact guidance.
+- `gps_outage`: Simulates a GPS outage (degraded navigation) to demonstrate the effect of sensor loss.
 
 To change the scenario, edit the following lines in `simulation.py`:
 
 ```python
 selector = ScenarioSelector()
-scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault', 'actuator_fault', 'both_faults'
+scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault', 'actuator_fault', 'both_faults', 'high_wind', 'gravity_anomaly', 'gps_outage'
 sim = Simulation(**scenario)
 sim.run()
 ```
-
-## Using Faults and Environmental Effects
-You can enable or disable sensor and actuator faults by passing arguments to the `Simulation` class in `simulation.py`:
-
-```python
-sim = Simulation(sensor_fault=True, actuator_fault=False)
-sim.run()
-```
-
-Environmental effects are always simulated as small random variations in wind and gravity, and are used in the dummy position update step.
-
-## Upcoming Advanced Visualizations
-To further enhance the educational value of this simulation, the following visualization features are planned:
-- **3D Trajectory Plots**: Visualize the simulated missile path in three dimensions.
-- **Error Ellipses**: Illustrate uncertainty in position or trajectory due to simulated sensor noise or faults.
-
-These features will be added in future updates. Contributions and suggestions are welcome!
-
-### 3D Trajectory Visualization
-The simulation now includes a 3D trajectory plot, in addition to the 2D plot. The 3D plot visualizes the simulated missile path in downrange, crossrange, and altitude dimensions. This feature is for educational purposes only and does not represent real-world physics or guidance.
-
-Both 2D and 3D plots are generated at the end of each simulation run to help illustrate the modular structure and theoretical possibilities of missile guidance visualization.
-
-### Error Ellipse Visualization
-The 2D trajectory plot now includes an error ellipse at the final position. This ellipse visually represents simulated uncertainty due to sensor noise, helping to illustrate how real guidance systems might visualize uncertainty in position or trajectory. The ellipse is for demonstration only and is not based on real data or operational algorithms.
-
-## Planned Functionality Expansions
-
-The following features are planned to further enhance the educational value and interactivity of the simulation:
-
-- **Simulated Environmental Extremes**: Add scenarios with high wind, gravity anomalies, or other challenging conditions to demonstrate how guidance systems might respond (non-functional, illustrative only).
-- **Degraded Navigation Modes**: Simulate loss or degradation of certain sensors (e.g., GPS outage) to show how navigation might be affected.
-- **More Scenario Types**: Expand the ScenarioSelector to include additional demonstration scenarios, such as environmental extremes or degraded navigation.
-- **Command-line Interactivity**: Allow users to select scenarios and options via command-line prompts for a more interactive demonstration experience.
-
-These features will be added in future updates. Suggestions and contributions are welcome!
-
-## Contributing & Feedback
-Contributions and feedback are welcome! If you have suggestions for new educational features, improvements, or questions, please open an issue at:
-
-https://github.com/fennar01/icbmGuidance/issues
-
-All contributions must maintain the non-functional, educational intent of the project.
-
----
-
-## License
-MIT License 
