@@ -30,9 +30,14 @@ class SensorSuite:
 # --- Simulated Navigation System ---
 class NavigationSystem:
     """Estimates current state from sensor data (non-functional)."""
+    def __init__(self, degraded_mode=False):
+        self.degraded_mode = degraded_mode
+
     def estimate_state(self, sensor_data):
-        # In reality, would use Kalman filter, etc.
-        # Here, just pass through the noisy data
+        # Simulate GPS outage by zeroing position if degraded
+        if self.degraded_mode:
+            sensor_data = dict(sensor_data)
+            sensor_data['position'] = np.array([0, 0, 0])  # GPS lost
         return sensor_data
 
 # --- Simulated Guidance System ---
@@ -102,14 +107,18 @@ class TrajectoryVisualizer:
 # --- Simulated Environmental Model ---
 class EnvironmentalModel:
     """Simulates environmental effects (wind, gravity variations) in a non-functional way."""
-    def __init__(self):
-        self.wind = np.array([0.0, 0.0, 0.0])  # Dummy wind vector
-        self.gravity = 9.81  # Dummy gravity (m/s^2)
+    def __init__(self, mode='normal'):
+        self.mode = mode
+        self.wind = np.array([0.0, 0.0, 0.0])
+        self.gravity = 9.81
 
     def get_environment(self, step):
-        # Return dummy, non-physical environmental effects
-        wind = self.wind + np.random.normal(0, 0.01, 3)  # Small random wind
-        gravity = self.gravity + np.random.normal(0, 0.01)
+        # Simulate environmental extremes based on mode
+        if self.mode == 'high_wind':
+            wind = np.array([2.0, 0.5, 0.0]) + np.random.normal(0, 0.1, 3)  # Strong wind
+        else:
+            wind = self.wind + np.random.normal(0, 0.01, 3)
+        gravity = self.gravity + (2.0 if self.mode == 'gravity_anomaly' else 0) + np.random.normal(0, 0.01)
         return {'wind': wind, 'gravity': gravity}
 
 # --- Simulated Fault Injector ---
@@ -134,13 +143,13 @@ class FaultInjector:
 # --- Main Simulation Orchestrator ---
 class Simulation:
     """Orchestrates the modular simulation (non-functional, now with environment and faults)."""
-    def __init__(self, sensor_fault=False, actuator_fault=False):
+    def __init__(self, sensor_fault=False, actuator_fault=False, env_mode='normal', nav_degraded=False):
         self.sensors = SensorSuite()
-        self.navigation = NavigationSystem()
+        self.navigation = NavigationSystem(degraded_mode=nav_degraded)
         self.guidance = GuidanceSystem()
         self.control = ControlSystem()
         self.actuators = ActuatorSuite()
-        self.environment = EnvironmentalModel()
+        self.environment = EnvironmentalModel(mode=env_mode)
         self.faults = FaultInjector(sensor_fault, actuator_fault)
         self.visualizer = TrajectoryVisualizer()
         self.trajectory = {'x': [], 'y': [], 'y2': [], 'z': []}
@@ -174,10 +183,13 @@ class ScenarioSelector:
     """Allows selection of demonstration scenarios (non-functional, educational)."""
     def __init__(self):
         self.scenarios = {
-            'normal': {'sensor_fault': False, 'actuator_fault': False},
-            'sensor_fault': {'sensor_fault': True, 'actuator_fault': False},
-            'actuator_fault': {'sensor_fault': False, 'actuator_fault': True},
-            'both_faults': {'sensor_fault': True, 'actuator_fault': True},
+            'normal': {'sensor_fault': False, 'actuator_fault': False, 'env_mode': 'normal', 'nav_degraded': False},
+            'sensor_fault': {'sensor_fault': True, 'actuator_fault': False, 'env_mode': 'normal', 'nav_degraded': False},
+            'actuator_fault': {'sensor_fault': False, 'actuator_fault': True, 'env_mode': 'normal', 'nav_degraded': False},
+            'both_faults': {'sensor_fault': True, 'actuator_fault': True, 'env_mode': 'normal', 'nav_degraded': False},
+            'high_wind': {'sensor_fault': False, 'actuator_fault': False, 'env_mode': 'high_wind', 'nav_degraded': False},
+            'gravity_anomaly': {'sensor_fault': False, 'actuator_fault': False, 'env_mode': 'gravity_anomaly', 'nav_degraded': False},
+            'gps_outage': {'sensor_fault': False, 'actuator_fault': False, 'env_mode': 'normal', 'nav_degraded': True},
         }
 
     def select(self, scenario_name):
@@ -187,6 +199,6 @@ if __name__ == "__main__":
     # Example: scenario selection
     selector = ScenarioSelector()
     # Change the scenario name below to try different demonstration modes
-    scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault', 'actuator_fault', 'both_faults'
+    scenario = selector.select('high_wind')  # Try 'normal', 'high_wind', 'gravity_anomaly', 'gps_outage', etc.
     sim = Simulation(**scenario)
     sim.run() 
