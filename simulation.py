@@ -196,9 +196,18 @@ class ScenarioSelector:
         return self.scenarios.get(scenario_name, self.scenarios['normal'])
 
 if __name__ == "__main__":
-    # Example: scenario selection
+    # Command-line scenario selection
     selector = ScenarioSelector()
-    # Change the scenario name below to try different demonstration modes
-    scenario = selector.select('high_wind')  # Try 'normal', 'high_wind', 'gravity_anomaly', 'gps_outage', etc.
+    scenario_names = list(selector.scenarios.keys())
+    print("Select a demonstration scenario:")
+    for i, name in enumerate(scenario_names, 1):
+        print(f"{i}. {name}")
+    try:
+        choice = int(input("Enter the number of your choice: "))
+        scenario_name = scenario_names[choice - 1]
+    except (ValueError, IndexError):
+        print("Invalid choice, defaulting to 'normal'.")
+        scenario_name = 'normal'
+    scenario = selector.select(scenario_name)
     sim = Simulation(**scenario)
     sim.run() 

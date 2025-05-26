@@ -113,13 +113,9 @@ To contribute a new demonstration scenario, add an entry to the `scenarios` dict
 
 All new scenarios must be clearly non-functional and serve an educational purpose.
 
-## Upcoming Feature: Command-Line Scenario Selection
+## Using the Command-Line Scenario Selection
 
-A command-line interface (CLI) for scenario selection is planned. This will allow users to choose demonstration scenarios interactively when running the simulation, making the tool more accessible and engaging for educational demonstrations.
-
-### How the CLI Scenario Selection Will Work
-
-When this feature is released, running the simulation will prompt you to select a scenario from the available options. For example:
+The simulation now supports interactive scenario selection via the command line. When you run `simulation.py`, you will be prompted to select a demonstration scenario from the available options. For example:
 
 ```
 Select a demonstration scenario:
@@ -133,6 +129,4 @@ Select a demonstration scenario:
 Enter the number of your choice: 
 ```
 
-The simulation will then run with the selected scenario, making it easier to demonstrate different educational cases interactively.
-
-Stay tuned for this feature in future updates!
+The simulation will then run with the selected scenario, making it easy to demonstrate different educational cases interactively.
