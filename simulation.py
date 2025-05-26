@@ -76,15 +76,49 @@ class TrajectoryVisualizer:
         plt.ylabel('Altitude (km)')
         plt.show()
 
+# --- Simulated Environmental Model ---
+class EnvironmentalModel:
+    """Simulates environmental effects (wind, gravity variations) in a non-functional way."""
+    def __init__(self):
+        self.wind = np.array([0.0, 0.0, 0.0])  # Dummy wind vector
+        self.gravity = 9.81  # Dummy gravity (m/s^2)
+
+    def get_environment(self, step):
+        # Return dummy, non-physical environmental effects
+        wind = self.wind + np.random.normal(0, 0.01, 3)  # Small random wind
+        gravity = self.gravity + np.random.normal(0, 0.01)
+        return {'wind': wind, 'gravity': gravity}
+
+# --- Simulated Fault Injector ---
+class FaultInjector:
+    """Allows toggling simulated sensor/actuator faults for demonstration (non-functional)."""
+    def __init__(self, sensor_fault=False, actuator_fault=False):
+        self.sensor_fault = sensor_fault
+        self.actuator_fault = actuator_fault
+
+    def inject_sensor_fault(self, sensor_data):
+        if self.sensor_fault:
+            # Corrupt sensor data (dummy, non-harmful)
+            return {k: v + np.random.normal(10, 5, v.shape) for k, v in sensor_data.items()}
+        return sensor_data
+
+    def inject_actuator_fault(self, actuator_cmd):
+        if self.actuator_fault:
+            # Corrupt actuator command (dummy, non-harmful)
+            return {k: (np.array(v) + 999) if isinstance(v, (list, np.ndarray)) else v for k, v in actuator_cmd.items()}
+        return actuator_cmd
+
 # --- Main Simulation Orchestrator ---
 class Simulation:
-    """Orchestrates the modular simulation (non-functional)."""
-    def __init__(self):
+    """Orchestrates the modular simulation (non-functional, now with environment and faults)."""
+    def __init__(self, sensor_fault=False, actuator_fault=False):
         self.sensors = SensorSuite()
         self.navigation = NavigationSystem()
         self.guidance = GuidanceSystem()
         self.control = ControlSystem()
         self.actuators = ActuatorSuite()
+        self.environment = EnvironmentalModel()
+        self.faults = FaultInjector(sensor_fault, actuator_fault)
         self.visualizer = TrajectoryVisualizer()
         self.trajectory = {'x': [], 'y': []}
         self.target = np.array([100, 0, 0])  # Dummy target
@@ -94,18 +128,22 @@ class Simulation:
         print("This is an educational demonstration. No real guidance or control is performed.")
         state = {'position': np.array([0, 0, 0])}
         for step in range(steps):
+            env = self.environment.get_environment(step)
             sensor_data = self.sensors.read()
+            sensor_data = self.faults.inject_sensor_fault(sensor_data)
             nav_state = self.navigation.estimate_state(sensor_data)
             guidance_cmd = self.guidance.compute_guidance(nav_state, self.target)
             actuator_cmd = self.control.compute_actuators(guidance_cmd, nav_state)
+            actuator_cmd = self.faults.inject_actuator_fault(actuator_cmd)
             self.actuators.actuate(actuator_cmd)
-            # Simulate position update (dummy, non-physical)
-            state['position'] = state['position'] + np.random.normal(1, 0.2, 3)
+            # Simulate position update (dummy, non-physical, includes wind)
+            state['position'] = state['position'] + np.random.normal(1, 0.2, 3) + env['wind']
             self.trajectory['x'].append(state['position'][0])
             self.trajectory['y'].append(state['position'][2])
             print(f"Step {step}: Simulated modular GNC cycle (no real actions)")
         self.visualizer.plot(self.trajectory)
 
 if __name__ == "__main__":
-    sim = Simulation()
+    # Example: run with sensor fault enabled
+    sim = Simulation(sensor_fault=True, actuator_fault=False)
     sim.run() 
