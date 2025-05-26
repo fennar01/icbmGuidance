@@ -62,6 +62,15 @@ See `DEVELOPMENT.md` for full details. Key points:
 - Testing: `pytest` (for safe, non-operational logic)
 - CI/CD: GitHub Actions recommended
 
+## Planned Features
+The following enhancements are planned to further increase the educational value and sophistication of the simulation:
+- **EnvironmentalModel**: Simulate environmental effects (e.g., wind, gravity variations) in a non-functional way.
+- **FaultInjector**: Introduce simulated sensor/actuator failures for scenario-based learning.
+- **Advanced Visualizations**: Add 3D trajectory plots, error ellipses, and more.
+- **Scenario Selection Interface**: Allow users to select different demonstration scenarios (all non-functional).
+
+Contributions are welcome! See `DEVELOPMENT.md` for safe contribution guidelines.
+
 ---
 
 ## License
