@@ -143,7 +143,24 @@ class Simulation:
             print(f"Step {step}: Simulated modular GNC cycle (no real actions)")
         self.visualizer.plot(self.trajectory)
 
+# --- Scenario Selector ---
+class ScenarioSelector:
+    """Allows selection of demonstration scenarios (non-functional, educational)."""
+    def __init__(self):
+        self.scenarios = {
+            'normal': {'sensor_fault': False, 'actuator_fault': False},
+            'sensor_fault': {'sensor_fault': True, 'actuator_fault': False},
+            'actuator_fault': {'sensor_fault': False, 'actuator_fault': True},
+            'both_faults': {'sensor_fault': True, 'actuator_fault': True},
+        }
+
+    def select(self, scenario_name):
+        return self.scenarios.get(scenario_name, self.scenarios['normal'])
+
 if __name__ == "__main__":
-    # Example: run with sensor fault enabled
-    sim = Simulation(sensor_fault=True, actuator_fault=False)
+    # Example: scenario selection
+    selector = ScenarioSelector()
+    # Change the scenario name below to try different demonstration modes
+    scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault', 'actuator_fault', 'both_faults'
+    sim = Simulation(**scenario)
     sim.run() 

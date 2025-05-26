@@ -79,6 +79,22 @@ Simulates environmental effects such as wind and gravity variations. These effec
 ### FaultInjector
 Allows toggling simulated sensor and actuator faults for demonstration purposes. Faults are non-harmful and only affect the dummy data used in the simulation.
 
+### ScenarioSelector
+Allows users to select between different demonstration scenarios:
+- `normal`: No faults
+- `sensor_fault`: Simulated sensor faults only
+- `actuator_fault`: Simulated actuator faults only
+- `both_faults`: Both sensor and actuator faults
+
+To change the scenario, edit the following lines in `simulation.py`:
+
+```python
+selector = ScenarioSelector()
+scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault', 'actuator_fault', 'both_faults'
+sim = Simulation(**scenario)
+sim.run()
+```
+
 ## Using Faults and Environmental Effects
 You can enable or disable sensor and actuator faults by passing arguments to the `Simulation` class in `simulation.py`:
 
