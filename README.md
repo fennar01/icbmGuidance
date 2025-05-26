@@ -117,4 +117,22 @@ All new scenarios must be clearly non-functional and serve an educational purpos
 
 A command-line interface (CLI) for scenario selection is planned. This will allow users to choose demonstration scenarios interactively when running the simulation, making the tool more accessible and engaging for educational demonstrations.
 
+### How the CLI Scenario Selection Will Work
+
+When this feature is released, running the simulation will prompt you to select a scenario from the available options. For example:
+
+```
+Select a demonstration scenario:
+1. normal
+2. sensor_fault
+3. actuator_fault
+4. both_faults
+5. high_wind
+6. gravity_anomaly
+7. gps_outage
+Enter the number of your choice: 
+```
+
+The simulation will then run with the selected scenario, making it easier to demonstrate different educational cases interactively.
+
 Stay tuned for this feature in future updates!
