@@ -97,3 +97,18 @@ scenario = selector.select('sensor_fault')  # Options: 'normal', 'sensor_fault',
 sim = Simulation(**scenario)
 sim.run()
 ```
+
+## Adding New Scenarios
+
+To contribute a new demonstration scenario, add an entry to the `scenarios` dictionary in the `ScenarioSelector` class in `simulation.py`. Each scenario can specify sensor/actuator faults, environmental mode, and navigation degradation. For example:
+
+```python
+'custom_scenario': {
+    'sensor_fault': True,
+    'actuator_fault': False,
+    'env_mode': 'high_wind',
+    'nav_degraded': True
+}
+```
+
+All new scenarios must be clearly non-functional and serve an educational purpose.
