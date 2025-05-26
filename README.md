@@ -105,6 +105,13 @@ sim.run()
 
 Environmental effects are always simulated as small random variations in wind and gravity, and are used in the dummy position update step.
 
+## Upcoming Advanced Visualizations
+To further enhance the educational value of this simulation, the following visualization features are planned:
+- **3D Trajectory Plots**: Visualize the simulated missile path in three dimensions.
+- **Error Ellipses**: Illustrate uncertainty in position or trajectory due to simulated sensor noise or faults.
+
+These features will be added in future updates. Contributions and suggestions are welcome!
+
 ---
 
 ## License
