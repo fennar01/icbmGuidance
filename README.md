@@ -120,6 +120,13 @@ Both 2D and 3D plots are generated at the end of each simulation run to help ill
 ### Error Ellipse Visualization
 The 2D trajectory plot now includes an error ellipse at the final position. This ellipse visually represents simulated uncertainty due to sensor noise, helping to illustrate how real guidance systems might visualize uncertainty in position or trajectory. The ellipse is for demonstration only and is not based on real data or operational algorithms.
 
+## Contributing & Feedback
+Contributions and feedback are welcome! If you have suggestions for new educational features, improvements, or questions, please open an issue at:
+
+https://github.com/fennar01/icbmGuidance/issues
+
+All contributions must maintain the non-functional, educational intent of the project.
+
 ---
 
 ## License
