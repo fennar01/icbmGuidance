@@ -1,7 +1,7 @@
 """
-ICBM Guidance System Simulation (Non-Functional, Modular)
+Rocket Guidance System Simulation (Non-Functional, Modular)
 
-This script simulates the theoretical structure of an ICBM guidance system for educational purposes only.
+This script simulates the theoretical structure of a rocket guidance system for educational purposes only.
 All sensitive or dangerous details are omitted or replaced with safe placeholders.
 """
 
@@ -78,7 +78,7 @@ class TrajectoryVisualizer:
         x = trajectory['x']
         y = trajectory['y']
         plt.plot(x, y)
-        plt.title('Simulated ICBM Trajectory (Non-Functional, 2D)')
+        plt.title('Simulated Rocket Trajectory (Non-Functional, 2D)')
         plt.xlabel('Distance (km)')
         plt.ylabel('Altitude (km)')
         # Add error ellipse at final position to illustrate uncertainty
@@ -98,7 +98,7 @@ class TrajectoryVisualizer:
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.plot(x, y, z)
-        ax.set_title('Simulated ICBM Trajectory (Non-Functional, 3D)')
+        ax.set_title('Simulated Rocket Trajectory (Non-Functional, 3D)')
         ax.set_xlabel('Downrange (km)')
         ax.set_ylabel('Crossrange (km)')
         ax.set_zlabel('Altitude (km)')
@@ -156,7 +156,7 @@ class Simulation:
         self.target = np.array([100, 0, 0])  # Dummy target
 
     def run(self, steps=20):
-        print("ICBM Guidance System Simulation (Non-Functional, Modular)")
+        print("Rocket Guidance System Simulation (Non-Functional, Modular)")
         print("This is an educational demonstration. No real guidance or control is performed.")
         state = {'position': np.array([0, 0, 0])}
         for step in range(steps):

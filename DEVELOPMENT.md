@@ -1,4 +1,4 @@
-# Development Pipeline for ICBM Guidance System Simulation (Non-Functional)
+# Development Pipeline for Rocket Guidance System Simulation (Non-Functional)
 
 ## Overview
 This document describes the recommended development workflow for contributors. All work should reinforce the educational, non-functional nature of the project.

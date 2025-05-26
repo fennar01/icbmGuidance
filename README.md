@@ -1,9 +1,9 @@
-# ICBM Guidance System Simulation (Non-Functional)
+# Rocket Guidance System Simulation (Non-Functional)
 
-**DISCLAIMER: This project is a non-functional, educational simulation of an Intercontinental Ballistic Missile (ICBM) guidance system. It is intended solely for demonstration purposes for journalists and researchers. No part of this project is operational or intended for real-world use.**
+**DISCLAIMER: This project is a non-functional, educational simulation of a rocket guidance system. It is intended solely for demonstration purposes for journalists and researchers. No part of this project is operational or intended for real-world use.**
 
 ## Project Overview
-This repository simulates the theoretical architecture and logic of an ICBM guidance system using open source tools. All code and documentation are intentionally incomplete and non-operational, with sensitive or dangerous elements omitted or replaced with safe placeholders.
+This repository simulates the theoretical architecture and logic of a rocket guidance system using open source tools. All code and documentation are intentionally incomplete and non-operational, with sensitive or dangerous elements omitted or replaced with safe placeholders.
 
 ## Features
 - Modular architecture for guidance, navigation, and control (GNC)
