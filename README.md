@@ -120,6 +120,17 @@ Both 2D and 3D plots are generated at the end of each simulation run to help ill
 ### Error Ellipse Visualization
 The 2D trajectory plot now includes an error ellipse at the final position. This ellipse visually represents simulated uncertainty due to sensor noise, helping to illustrate how real guidance systems might visualize uncertainty in position or trajectory. The ellipse is for demonstration only and is not based on real data or operational algorithms.
 
+## Planned Functionality Expansions
+
+The following features are planned to further enhance the educational value and interactivity of the simulation:
+
+- **Simulated Environmental Extremes**: Add scenarios with high wind, gravity anomalies, or other challenging conditions to demonstrate how guidance systems might respond (non-functional, illustrative only).
+- **Degraded Navigation Modes**: Simulate loss or degradation of certain sensors (e.g., GPS outage) to show how navigation might be affected.
+- **More Scenario Types**: Expand the ScenarioSelector to include additional demonstration scenarios, such as environmental extremes or degraded navigation.
+- **Command-line Interactivity**: Allow users to select scenarios and options via command-line prompts for a more interactive demonstration experience.
+
+These features will be added in future updates. Suggestions and contributions are welcome!
+
 ## Contributing & Feedback
 Contributions and feedback are welcome! If you have suggestions for new educational features, improvements, or questions, please open an issue at:
 
